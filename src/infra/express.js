@@ -8,7 +8,8 @@ const VError = require('verror');
 
 const HttpServer = require('./http-server'); 
 const config = require('./config');
-const { errorHandler } = require('../middleware/handler');
+const { errorHandler, loggingHandler } = require('../middleware/handler');
+const routes = require('../routes/index');
 
 class Express {
 
@@ -17,18 +18,25 @@ class Express {
     this.port = config.PORT;
   }
 
+  /**
+   * Initialize express server
+   */
   async init() {
     this.app = express();
     this.app.use(helmet());
-    // Allow json parser on body
     this.app.use(bodyParser.json());
     this.app.use(cors());
-
+    
+    this.app.use(loggingHandler);
+    this.app.use(routes);
     this.app.use(errorHandler);
     
     await this.registerHttpServer();
   }
 
+  /**
+   * Register the http server
+   */
   async registerHttpServer() {
     this.httpServer = new HttpServer(this.app, this.port);
     this.httpServer.on('error', err => {

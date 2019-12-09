@@ -1,4 +1,7 @@
 "use strict";
+
+const VError = require('verror');
+
 const { getCommonRequestDetails } = require("../utils");
 
 /**
@@ -11,7 +14,7 @@ const { getCommonRequestDetails } = require("../utils");
 function errorHandler(err, req, res, next) {
   const { args, name, status, message, stack } = err;
 
-  logger.error(
+  console.error(
     {
       request: getCommonRequestDetails(req),
       error: {
@@ -28,6 +31,12 @@ function errorHandler(err, req, res, next) {
   });
 }
 
+function loggingHandler(req, res, next) {
+  console.log(getCommonRequestDetails(req), `Received request to ${req.method} ${req.url}`)
+  next();
+}
+
 module.exports = {
-  errorHandler
+  errorHandler,
+  loggingHandler
 };
