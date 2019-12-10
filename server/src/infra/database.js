@@ -61,7 +61,6 @@ class Database extends EventEmitter {
       this.emit('warn', new VError('MongoDB has suffered a disconnection'));
     });
     this.connection.on('error', (err) => {
-      console.log('testtt error');
       this.emit('error', new VError(err, 'An error ocurred in the MongoDB connection'));
     });
   }

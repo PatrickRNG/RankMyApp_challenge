@@ -1,5 +1,4 @@
 const fetch = require('node-fetch')
-const assert = require('assert');
 const chai = require('chai');
 const expect = chai.expect;
 
@@ -9,8 +8,8 @@ describe('Alert API test', () => {
 
   it('should return the alerts correctly', async () => {
       const response = await fetch(ALERT_API);
-      expect(response.status).to.equal(200);
       const alerts = await response.json();
+      expect(response.status).to.equal(200);
       expect(alerts).to.be.a('array');
   });
 
