@@ -13,6 +13,7 @@ const Wrapper = styled.div`
 `;
 
 const Card = styled(AntCard)`
+  position: relative;
   width: 350px;
   margin: 6px;
 
@@ -41,7 +42,20 @@ const Minute = styled.div`
   font-size: 14px;
 `;
 
-function Alerts() {
+const CloseButton = styled.span`
+  position: absolute;
+  right: 13px;
+  top: 6px;
+  font-size: 18px;
+  cursor: pointer;
+  color: #aaa;
+
+  &:hover {
+    color: #888;
+  }
+`;
+
+function Alerts({deleteAlert}) {
   const { alerts } = useContext(AlertContext);
   return (
     <>
@@ -60,6 +74,7 @@ function Alerts() {
                 <Minute>minutes</Minute>
               </Time>
             </div>
+            <CloseButton onClick={() => deleteAlert(alert._id)}>&times;</CloseButton>
           </Card>
         ))}
       </Wrapper>

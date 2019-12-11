@@ -11,7 +11,7 @@ const AlertModel = require('./model');
  */
 async function getAlert(req, res, next) {
   try {
-    const alerts = await AlertModel.find({}, { _id: 0, __v: 0 }).exec();
+    const alerts = await AlertModel.find({}, {__v: 0 }).exec();
     res.status(200).json(alerts);
   } catch (err) {
     next(new VError(err, "Failed to get the alert"));
@@ -37,7 +37,23 @@ async function createAlert(req, res, next) {
   }
 }
 
+/**
+ * Get all alerts
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
+async function deleteAlert(req, res, next) {
+  try {
+    AlertModel.deleteOne({_id: req.body.id}).exec();
+    res.status(200).end();
+  } catch (err) {
+    next(new VError(err, "Failed to get the alert"));
+  }
+}
+
 module.exports = {
   getAlert,
-  createAlert
+  createAlert,
+  deleteAlert
 };

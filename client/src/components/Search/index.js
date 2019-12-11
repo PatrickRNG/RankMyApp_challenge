@@ -47,7 +47,7 @@ function Search({ addAlert }) {
   async function onSave() {
     const newAlert = await addAlert(alert);
     if (newAlert.search) {
-      message.success("Added alert");
+      message.success("Alert added");
       setAlert({
         search: "",
         email: "",
