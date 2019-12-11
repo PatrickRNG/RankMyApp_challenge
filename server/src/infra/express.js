@@ -13,41 +13,41 @@ const routes = require('../routes/index');
 
 class Express {
 
-  constructor() {
-    this.app = express;
-    this.port = config.PORT;
-  }
+	constructor() {
+		this.app = express;
+		this.port = config.PORT;
+	}
 
-  /**
+	/**
    * Initialize express server
    */
-  async init() {
-    this.app = express();
-    this.app.use(cors());
-    this.app.use(helmet());
-    this.app.use(bodyParser.json());
+	async init() {
+		this.app = express();
+		this.app.use(cors());
+		this.app.use(helmet());
+		this.app.use(bodyParser.json());
     
-    this.app.use(loggingHandler);
-    this.app.use(routes);
-    this.app.use(errorHandler);
+		this.app.use(loggingHandler);
+		this.app.use(routes);
+		this.app.use(errorHandler);
     
-    await this.registerHttpServer();
-  }
+		await this.registerHttpServer();
+	}
 
-  /**
+	/**
    * Register the http server
    */
-  async registerHttpServer() {
-    this.httpServer = new HttpServer(this.app, this.port);
-    this.httpServer.on('error', err => {
-      return new VError(err, 'Error to initialize the server');
-    });
-    this.httpServer.on('info', msg => {
-      console.log(msg);
-    });
+	async registerHttpServer() {
+		this.httpServer = new HttpServer(this.app, this.port);
+		this.httpServer.on('error', err => {
+			return new VError(err, 'Error to initialize the server');
+		});
+		this.httpServer.on('info', msg => {
+			console.log(msg);
+		});
 
-    this.httpServer.init();
-  }
+		this.httpServer.init();
+	}
 }
 
 

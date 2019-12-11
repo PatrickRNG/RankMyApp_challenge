@@ -4,7 +4,7 @@ const { Router } = require('express');
 
 const alertController = require('../api/alert/controller');
 const ebayController = require('../api/ebay/controller');
-const emailController = require('../api/email/controller')
+const emailController = require('../api/email/controller');
 
 const router = Router();
 

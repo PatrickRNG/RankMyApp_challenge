@@ -7,8 +7,8 @@ const config = require('./infra/config');
 
 const express = new Express();
 const mongoOpts = {
-  useCreateIndex: true,
-  useUnifiedTopology: true
+	useCreateIndex: true,
+	useUnifiedTopology: true
 };
 const database = new Database(config.MONGO_URI, mongoOpts);
 

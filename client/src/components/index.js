@@ -4,8 +4,8 @@ import Search from './Search';
 import Alerts from './Alerts';
 
 export {
-  Header,
-  Footer,
-  Search,
-  Alerts
-}
+	Header,
+	Footer,
+	Search,
+	Alerts
+};

@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
-import { Input, Button, Select, message } from "antd";
-import styled from "styled-components";
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import { Input, Button, Select, message } from 'antd';
+import styled from 'styled-components';
 
-import AlertContext from "../../contexts/AlertContext";
+import AlertContext from '../../contexts/AlertContext';
 
 const { Option } = Select;
 
@@ -30,71 +31,75 @@ const Block = styled.div`
 `;
 
 function Search({ addAlert }) {
-  const { alert, setAlert } = useContext(AlertContext);
+	const { alert, setAlert } = useContext(AlertContext);
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    setAlert({
-      ...alert,
-      [name]: value
-    });
-  }
+	function handleChange(e) {
+		const { name, value } = e.target;
+		setAlert({
+			...alert,
+			[name]: value
+		});
+	}
 
-  function handleTimeChange(value) {
-    setAlert({ ...alert, time: +value });
-  }
+	function handleTimeChange(value) {
+		setAlert({ ...alert, time: +value });
+	}
 
-  async function onSave() {
-    const newAlert = await addAlert(alert);
-    if (newAlert.search) {
-      message.success("Alert added");
-      setAlert({
-        search: "",
-        email: "",
-        time: 10
-      });
-    }
-  }
+	async function onSave() {
+		const newAlert = await addAlert(alert);
+		if (newAlert.search) {
+			message.success('Alert added');
+			setAlert({
+				search: '',
+				email: '',
+				time: 10
+			});
+		}
+	}
 
-  return (
-    <div>
-      <Block>
-        <label>Search phrase</label>
-        <StyledInput
-          onChange={handleChange}
-          value={alert.search}
-          name="search"
-          placeholder="Search phrase"
-        />
-      </Block>
-      <Block>
-        <label>E-mail</label>
-        <StyledInput
-          onChange={handleChange}
-          value={alert.email}
-          name="email"
-          placeholder="E-mail"
-        />
-      </Block>
-      <Block>
-        <label>Time</label>
-        <StyledSelect
-          onChange={handleTimeChange}
-          value={alert.time}
-          name="time"
-        >
-          <Option value="2">2 minutes</Option>
-          <Option value="10">10 minutes</Option>
-          <Option value="30">30 minutes</Option>
-        </StyledSelect>
-      </Block>
-      <div>
-        <StyledButton onClick={onSave} type="primary">
+	return (
+		<div>
+			<Block>
+				<label>Search phrase</label>
+				<StyledInput
+					onChange={handleChange}
+					value={alert.search}
+					name="search"
+					placeholder="Search phrase"
+				/>
+			</Block>
+			<Block>
+				<label>E-mail</label>
+				<StyledInput
+					onChange={handleChange}
+					value={alert.email}
+					name="email"
+					placeholder="E-mail"
+				/>
+			</Block>
+			<Block>
+				<label>Time</label>
+				<StyledSelect
+					onChange={handleTimeChange}
+					value={alert.time}
+					name="time"
+				>
+					<Option value="2">2 minutes</Option>
+					<Option value="10">10 minutes</Option>
+					<Option value="30">30 minutes</Option>
+				</StyledSelect>
+			</Block>
+			<div>
+				<StyledButton onClick={onSave} type="primary">
           Save
-        </StyledButton>
-      </div>
-    </div>
-  );
+				</StyledButton>
+			</div>
+		</div>
+	);
 }
+
+Search.propTypes = {
+	addAlert: PropTypes.func
+};
 
 export default Search;

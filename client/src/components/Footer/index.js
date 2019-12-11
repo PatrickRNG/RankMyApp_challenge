@@ -1,14 +1,14 @@
-import React from "react";
-import { Layout } from "antd";
+import React from 'react';
+import { Layout } from 'antd';
 
 const { Footer : AntFooter } = Layout;
 
 function Footer() {
-  return (
-    <AntFooter style={{ textAlign: "center" }}>
+	return (
+		<AntFooter style={{ textAlign: 'center' }}>
       RankMyApp Challenge @2019 created by Patrick Passarella
-    </AntFooter>
-  );
+		</AntFooter>
+	);
 }
 
 export default Footer;

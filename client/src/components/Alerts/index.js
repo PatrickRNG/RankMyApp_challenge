@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import AlertContext from "../../contexts/AlertContext";
-import { Card as AntCard } from "antd";
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import AlertContext from '../../contexts/AlertContext';
+import { Card as AntCard } from 'antd';
 
 const StyledHeader = styled.h2`
   margin-top: 30px;
@@ -56,30 +57,34 @@ const CloseButton = styled.span`
 `;
 
 function Alerts({deleteAlert}) {
-  const { alerts } = useContext(AlertContext);
-  return (
-    <>
-      <StyledHeader>Alerts</StyledHeader>
-      <Wrapper>
-        {alerts.map((alert, i) => (
-          <Card key={i}>
-            <Left>
-              <b>{alert.search}</b>
-              <P>{alert.email}</P>
-            </Left>
-            <div>
-              <Time>
-                {alert.time}
-                <br />
-                <Minute>minutes</Minute>
-              </Time>
-            </div>
-            <CloseButton onClick={() => deleteAlert(alert._id)}>&times;</CloseButton>
-          </Card>
-        ))}
-      </Wrapper>
-    </>
-  );
+	const { alerts } = useContext(AlertContext);
+	return (
+		<>
+			<StyledHeader>Alerts</StyledHeader>
+			<Wrapper>
+				{alerts.map((alert, i) => (
+					<Card key={i}>
+						<Left>
+							<b>{alert.search}</b>
+							<P>{alert.email}</P>
+						</Left>
+						<div>
+							<Time>
+								{alert.time}
+								<br />
+								<Minute>minutes</Minute>
+							</Time>
+						</div>
+						<CloseButton onClick={() => deleteAlert(alert._id)}>&times;</CloseButton>
+					</Card>
+				))}
+			</Wrapper>
+		</>
+	);
 }
+
+Alerts.propTypes = {
+	deleteAlert: PropTypes.func
+};
 
 export default Alerts;
