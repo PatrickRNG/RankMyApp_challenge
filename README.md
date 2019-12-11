@@ -19,7 +19,7 @@ Create a ".env" file in the root of the /server folder. Inside set the below env
 5. REDIRECT_URL -> Configuration for Google Oauth
 6. REFRESH_TOKEN -> Configuration for Google Oauth
 
-## TO DO
+## TO DO / Improvements
 1. More tests!
 2. Better way to control every E-mail sent by each alarm
 3. More environment variables configurations
