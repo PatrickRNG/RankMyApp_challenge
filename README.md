@@ -9,7 +9,7 @@
 4. Go to http://localhost:3001/
 
 ## Configurations
-Create a ".env" file in the root of the /server folder. Inside set the below env variables. (For testing purposes there is already a .env.example in this repository, just copy it).
+Create a ".env" file in the root of the /server folder. Inside set the below env variables. (For testing purposes there is already a .env.example in this repository (server folder), just copy it).
 
 **The environment variables**  
 1. PORT -> Port for the web server
